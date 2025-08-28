@@ -108,7 +108,12 @@ cfg_r1 = [
 
 # Configuración de R2 (remoto, solo gestión + trunk)
 cfg_r2 = [
-    # VLAN de gestión 1299 ya configurada con IP 10.10.12.4/29
+    # VLANs de usuario en el bridge remoto
+    "/interface bridge vlan add bridge=br-remote vlan-ids=239 untagged=ether1,ether2",
+    "/interface bridge vlan add bridge=br-remote vlan-ids=1299 tagged=br-remote,ether1,ether2",
+    "/interface bridge vlan add bridge=br-remote vlan-ids=110 tagged=ether1,ether2",
+    "/interface bridge vlan add bridge=br-remote vlan-ids=120 tagged=ether1,ether2",
+    "/interface bridge vlan add bridge=br-remote vlan-ids=130 tagged=ether1,ether2",
 ]
 
 # Comandos de verificación
@@ -161,3 +166,4 @@ for name, device in devices.items():
         print(f"ERROR: Ocurrió un error inesperado al conectar o configurar {name}: {e}")
 
 print("\n##### Proceso de configuración completado #####")
+
